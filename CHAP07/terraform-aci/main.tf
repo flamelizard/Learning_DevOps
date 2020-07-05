@@ -1,4 +1,6 @@
-provider "azurerm" {}
+provider "azurerm" {
+  version = "=1.37.0"  
+}
 
 terraform {
   backend "azurerm" {}
