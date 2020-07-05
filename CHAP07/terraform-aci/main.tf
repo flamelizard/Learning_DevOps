@@ -7,14 +7,14 @@ terraform {
 
 resource "azurerm_resource_group" "acidemobook" {
   name     = "demoBook"
-  location = "westus2"
+  location = "westeurope"
 }
 
-variable "imageversion" {
+variable "image_version" {
   description = "Tag of the image to deploy"
 }
 
-variable "dockerhub-username" {
+variable "dockerhub_username" {
   description = "DockerHub username"
 }
 
@@ -28,17 +28,13 @@ resource "azurerm_container_group" "aci-myapp" {
   os_type             = "linux"
   container {
     name   = "myappdemo"
-    image  = "docker.io/${var.dockerhub-username}/demobook:${var.imageversion}"
+    image  = "docker.io/${var.dockerhub_username}/demobook:${var.image_version}"
     cpu    = "0.5"
-    memory = "1.5"
+    memory = "1"
 
     ports {
       port     = 80
       protocol = "TCP"
     }
-
   }
-
-
-
 }
